@@ -15,3 +15,22 @@ mybatis-plus:
       id-type: auto #主键自增
 server:
   port: 8081
+
+swagger:
+  # 部署时间 yyyy-MM-dd HH:mm:ss
+  publishDate:
+  enable: true
+  active: ${spring.profiles.active}
+  title: 生产者
+  description: 生产者微服务
+  termsOfServiceUrl: http://www.provider.com
+  version: 1.0
+
+knife4j:
+  # 是否屏蔽Swagger
+  production: false
+  # 开启Swagger的Basic认证功能,默认是false
+  basic:
+    enable: true
+    username: zhangsan
+    password: 123

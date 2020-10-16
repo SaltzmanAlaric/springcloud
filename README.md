@@ -15,3 +15,4 @@
 - springcloud-openfeign 服务通信
 - mysql 数据库
 - mybatisplus 持久层框架
+- knife4j Api文档（官网指导文档：https://doc.xiaominfo.com/）
