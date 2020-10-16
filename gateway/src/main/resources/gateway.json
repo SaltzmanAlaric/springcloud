@@ -1,0 +1,46 @@
+[
+  {
+    "id": "provider-router",
+    "uri": "lb://provider",
+    "order": 1,
+    "predicates": [
+      {
+        "args": {
+          "pattern": "/provider/**"
+        },
+        "name": "Path"
+      }
+    ],
+    "filters": [
+      {
+        "args": {
+          "regexp": "/provider/(?<segment>.*)",
+          "replacement": "/$\\{segment}"
+        },
+        "name": "RewritePath"
+      }
+    ]
+  },
+  {
+    "id": "consumer-router",
+    "uri": "lb://consumer",
+    "order": 2,
+    "predicates": [
+      {
+        "args": {
+          "pattern": "/consumer/**"
+        },
+        "name": "Path"
+      }
+    ],
+    "filters": [
+      {
+        "args": {
+          "regexp": "/consumer/(?<segment>.*)",
+          "replacement": "/$\\{segment}"
+        },
+        "name": "RewritePath"
+      }
+    ]
+  }
+]

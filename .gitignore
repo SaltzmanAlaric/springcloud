@@ -35,5 +35,4 @@ build/
 mvnw
 mvnw.cmd
 *.log
-*.json
 #.gitignore
