@@ -39,29 +39,15 @@ public class Swagger2Config {
 
     private String title;
     private String description;
-    private String termsOfServiceUrl;
     private String version;
+    private String basePackage;
     private String publishDate;
     private String active;
+    private String termsOfServiceUrl;
 
-    /*@Bean
+    @Bean
     public Docket createRestApi() {
         return docket("ALL", ".+");
-    }
-*/
-
-    @Bean(value = "defaultApi2")
-    public Docket defaultApi2() {
-        Docket docket=new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
-                //分组名称
-                .groupName("2.X版本")
-                .select()
-                //这里指定Controller扫描包路径
-                .apis(RequestHandlerSelectors.basePackage("com.study.controller"))
-                .paths(PathSelectors.any())
-                .build();
-        return docket;
     }
 
     private Docket docket(String groupName, String pathRegex) {
@@ -73,7 +59,7 @@ public class Swagger2Config {
                 .forCodeGeneration(true)
                 .groupName(groupName)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.study.controller"))
+                .apis(RequestHandlerSelectors.basePackage(basePackage))
                 .paths(PathSelectors.regex(pathRegex))
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .build();

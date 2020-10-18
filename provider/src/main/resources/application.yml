@@ -21,6 +21,7 @@ swagger:
   publishDate:
   enable: true
   active: ${spring.profiles.active}
+  basePackage: com.study.controller
   title: 生产者
   description: 生产者微服务
   termsOfServiceUrl: http://www.provider.com

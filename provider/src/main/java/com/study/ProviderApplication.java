@@ -21,9 +21,20 @@ public class ProviderApplication {
         SpringApplication.run(ProviderApplication.class, args);
     }
 
+    /**
+     * 【knife4j】个性化配置参数说明
+     *
+     * 1.i18n国际化支持:lang=en lang可选择：中文(zh)、English(en)
+     * 2.开启请求参数缓存：cache=1
+     * 3.菜单Api地址显示: showMenuApi=1
+     * 4.分组tag显示dsecription说明属性: showDes=1
+     * 5.开启RequestMapping接口过滤,默认只显示: filterApi=1 filterApiType=post
+     * 6.开启缓存已打开的api文档:cacheApi=1
+     * 7.启用SwaggerBootstrapUi提供的增强功能:plus=1
+     */
     @GetMapping("doc")
     void index(HttpServletResponse response) throws IOException {
-        response.sendRedirect("doc.html");
+        response.sendRedirect("doc.html?plus=1&cache=1&lang=zh&showMenuApi=1&showDes=1");
     }
 
 }

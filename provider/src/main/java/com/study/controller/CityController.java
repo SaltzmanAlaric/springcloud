@@ -1,5 +1,7 @@
 package com.study.controller;
 
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
+import com.github.xiaoymin.knife4j.annotations.ApiSort;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.study.common.utils.Result;
 import com.study.entity.City;
@@ -17,13 +19,14 @@ import java.util.List;
 @Api(tags = "信息接口")
 @RestController
 @RequestMapping("/city")
-@ApiSupport(order = 284, author = "adm")
+@ApiSort(284)
 public class CityController {
 
     @Autowired
     private ICityService service;
 
     @ApiOperation("根据id获取路口")
+    @ApiOperationSupport(order = 1, author = "admin")
     @ApiImplicitParam(name = "id", value = "路口id", required = false, dataType = "String", example = "310000")
     @GetMapping("/getTree")
     public Result getTree() {

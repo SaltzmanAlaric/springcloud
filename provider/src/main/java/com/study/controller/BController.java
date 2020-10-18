@@ -1,6 +1,7 @@
 package com.study.controller;
 
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
+import com.github.xiaoymin.knife4j.annotations.ApiSort;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.study.common.utils.Result;
 import com.study.entity.City;
@@ -19,27 +20,28 @@ import java.util.List;
 @Api(tags = "mam-b")
 @RestController
 @RequestMapping("/b")
-@ApiSupport(order = 1, author = "甲乙")
+@ApiSort(1)
 public class BController {
 
     @ApiOperation("获取名称")
-    @ApiOperationSupport(order = 1)
+    @ApiOperationSupport(order = 1, author = "mam")
     @PostMapping("name")
     public Result getName() {
         return Result.ok().put("b", "name");
     }
 
+    @ApiOperation("获取key")
+    @ApiOperationSupport(order = 2, author = "mam")
+    @GetMapping("key")
+    public Result getKey() {
+        return Result.ok().put("b", "key");
+    }
+
     @ApiOperation("获取id")
-    @ApiOperationSupport(order = 2)
+    @ApiOperationSupport(order = 3, author = "mam")
     @GetMapping("id")
     public Result getId() {
         return Result.ok().put("b", "id");
     }
 
-    @ApiOperation("获取key")
-    @ApiOperationSupport(order = 2)
-    @GetMapping("key")
-    public Result getKey() {
-        return Result.ok().put("b", "key");
-    }
 }

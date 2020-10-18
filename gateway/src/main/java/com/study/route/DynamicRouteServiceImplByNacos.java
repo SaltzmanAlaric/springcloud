@@ -17,22 +17,17 @@ import java.util.concurrent.Executor;
 @Component
 public class DynamicRouteServiceImplByNacos {
 
-    @Value("${spring.cloud.nacos.discovery.server-addr}")
+    @Value("${spring.cloud.nacos.config.server-addr}")
     private String serverAddr;
 
-    @Value("${spring.cloud.nacos.discovery.dataId}")
-    private String dataId = "gateway";
+    @Value("${spring.cloud.nacos.config.dataId}")
+    private String dataId;
 
-    @Value("${spring.cloud.nacos.discovery.group}")
-    private String group = "DEFAULT_GROUP";
+    @Value("${spring.cloud.nacos.config.group}")
+    private String group;
 
     @Autowired
     private DynamicRouteServiceImpl dynamicRouteService;
-
-    public DynamicRouteServiceImplByNacos() {
-
-        dynamicRouteByNacosListener(dataId, group);
-    }
 
     @PostConstruct
     public void dynamicRouteByNacosListener() {
@@ -67,37 +62,6 @@ public class DynamicRouteServiceImplByNacos {
             dynamicRouteService.publish();
             System.out.println("Dynamic config gateway route finished. " + JSON.toJSONString(gatewayRouteDefinitions));
         } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-        /**
-         * 监听Nacos Server下发的动态路由配置
-         * @param dataId
-         * @param group
-         */
-    public void dynamicRouteByNacosListener (String dataId, String group){
-        try {
-            ConfigService configService=NacosFactory.createConfigService(serverAddr);
-            String content = configService.getConfig(dataId, group, 5000);
-            System.out.println(content);
-            configService.addListener(dataId, group, new Listener()  {
-                @Override
-                public void receiveConfigInfo(String configInfo) {
-                    System.out.println("进行网关更新:" + configInfo);
-                    List<RouteDefinition> definitions = JSON.parseArray(configInfo, RouteDefinition.class);
-                    for (RouteDefinition definition : definitions) {
-                        System.out.println("update route : " + definition.toString());
-                        dynamicRouteService.update(definition);
-                    }
-                }
-                @Override
-                public Executor getExecutor() {
-                    return null;
-                }
-            });
-        } catch (NacosException e) {
-            System.out.println("从nacos接收动态路由配置出错!!!");
             e.printStackTrace();
         }
     }
