@@ -9,6 +9,9 @@ import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class DynamicRouteServiceImpl implements ApplicationEventPublisherAware {
 
@@ -17,6 +20,7 @@ public class DynamicRouteServiceImpl implements ApplicationEventPublisherAware {
 
     private ApplicationEventPublisher publisher;
 
+    private static final List<String> ROUTE_LIST = new ArrayList<>();
 
     /**
      * 增加路由
@@ -59,12 +63,24 @@ public class DynamicRouteServiceImpl implements ApplicationEventPublisherAware {
     public String delete(String id) {
         try {
             this.routeDefinitionWriter.delete(Mono.just(id));
+            ROUTE_LIST.add(id);
             return "delete success";
         } catch (Exception e) {
             e.printStackTrace();
             return "delete fail";
         }
 
+    }
+
+    public void clear() {
+        for(String id : ROUTE_LIST) {
+            this.routeDefinitionWriter.delete(Mono.just(id)).subscribe();
+        }
+        ROUTE_LIST.clear();
+    }
+
+    public void publish() {
+        this.publisher.publishEvent(new RefreshRoutesEvent(this.routeDefinitionWriter));
     }
 
     @Override
