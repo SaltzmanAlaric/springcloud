@@ -1,6 +1,8 @@
 package com.study.route;
 
+import com.study.model.GatewayRouteDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.gateway.config.GatewayProperties;
 import org.springframework.cloud.gateway.event.RefreshRoutesEvent;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinitionWriter;
@@ -20,7 +22,9 @@ public class DynamicRouteServiceImpl implements ApplicationEventPublisherAware {
 
     private ApplicationEventPublisher publisher;
 
-    private static final List<String> ROUTE_LIST = new ArrayList<>();
+    public static final List<String> ROUTE_LIST = new ArrayList<>();
+
+    public static final List<RouteDefinition> ROUTE_DEFINITION_LIST = new ArrayList<>();
 
     /**
      * 增加路由
@@ -29,6 +33,8 @@ public class DynamicRouteServiceImpl implements ApplicationEventPublisherAware {
      */
     public String add(RouteDefinition definition) {
         routeDefinitionWriter.save(Mono.just(definition)).subscribe();
+        ROUTE_LIST.add(definition.getId());
+        ROUTE_DEFINITION_LIST.add(definition);
         this.publisher.publishEvent(new RefreshRoutesEvent(this));
         return "success";
     }
@@ -47,6 +53,8 @@ public class DynamicRouteServiceImpl implements ApplicationEventPublisherAware {
         }
         try {
             routeDefinitionWriter.save(Mono.just(definition)).subscribe();
+            ROUTE_LIST.add(definition.getId());
+            ROUTE_DEFINITION_LIST.add(definition);
             this.publisher.publishEvent(new RefreshRoutesEvent(this));
             return "success";
         } catch (Exception e) {
@@ -63,7 +71,6 @@ public class DynamicRouteServiceImpl implements ApplicationEventPublisherAware {
     public String delete(String id) {
         try {
             this.routeDefinitionWriter.delete(Mono.just(id));
-            ROUTE_LIST.add(id);
             return "delete success";
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,6 +84,7 @@ public class DynamicRouteServiceImpl implements ApplicationEventPublisherAware {
             this.routeDefinitionWriter.delete(Mono.just(id)).subscribe();
         }
         ROUTE_LIST.clear();
+        ROUTE_DEFINITION_LIST.clear();
     }
 
     public void publish() {
