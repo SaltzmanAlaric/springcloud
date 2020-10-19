@@ -5,6 +5,7 @@ import com.alibaba.nacos.api.NacosFactory;
 import com.alibaba.nacos.api.config.ConfigService;
 import com.alibaba.nacos.api.config.listener.Listener;
 import com.alibaba.nacos.api.exception.NacosException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.route.RouteDefinition;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.concurrent.Executor;
 
 @Component
+@Slf4j
 public class DynamicRouteServiceImplByNacos {
 
     @Value("${spring.cloud.nacos.config.server-addr}")
@@ -60,7 +62,7 @@ public class DynamicRouteServiceImplByNacos {
                 dynamicRouteService.add(routeDefinition);
             }
             dynamicRouteService.publish();
-            System.out.println("Dynamic config gateway route finished. " + JSON.toJSONString(gatewayRouteDefinitions));
+            log.info("Dynamic config gateway route finished, {}.", JSON.toJSONString(gatewayRouteDefinitions));
         } catch (Exception e) {
             e.printStackTrace();
         }

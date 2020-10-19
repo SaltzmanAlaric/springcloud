@@ -3,14 +3,6 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
-#    gateway:
-#      routes:
-#        - id: city
-#          uri: lb://consumer
-#          predicates:
-#            - Path=/city/** #以city开头的请求都负载到consumer服务
-#          filters:
-#            - RewritePath=/city/(?<segment>.*), /$\{segment} #过滤掉url里的city,例如http://ip:port/city/getCity -> http://ip:port/getCity
 
 server:
   port: 8000

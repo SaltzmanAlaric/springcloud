@@ -46,21 +46,17 @@ public class Swagger2Config {
     private String termsOfServiceUrl;
 
     @Bean
-    public Docket createRestApi() {
-        return docket("ALL", ".+");
-    }
-
-    private Docket docket(String groupName, String pathRegex) {
+    public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
                 .directModelSubstitute(LocalDate.class, String.class).genericModelSubstitutes(ResponseEntity.class)
                 .useDefaultResponseMessages(false)
                 //.globalResponseMessage(RequestMethod.POST, customerResponseMessage())
                 //.globalResponseMessage(RequestMethod.GET, customerResponseMessage())
                 .forCodeGeneration(true)
-                .groupName(groupName)
+                //.groupName(groupName)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage(basePackage))
-                .paths(PathSelectors.regex(pathRegex))
+                //.paths(PathSelectors.regex(pathRegex))
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .build();
     }

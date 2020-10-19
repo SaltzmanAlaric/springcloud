@@ -12,7 +12,7 @@ import springfox.documentation.swagger.web.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/swagger-resources")
+@RequestMapping("swagger-resources")
 public class SwaggerHandler {
 
     @Autowired(required = false)
