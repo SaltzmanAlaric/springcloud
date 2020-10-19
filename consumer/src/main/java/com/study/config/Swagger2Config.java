@@ -30,7 +30,6 @@ import java.util.Date;
 @Setter
 @Configuration
 @EnableSwagger2
-@ConditionalOnProperty(name = "swagger.enable", havingValue = "true")
 @ConfigurationProperties(prefix = "swagger")
 @EnableKnife4j
 @Import(BeanValidatorPluginsConfiguration.class)

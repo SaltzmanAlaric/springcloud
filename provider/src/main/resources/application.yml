@@ -19,7 +19,6 @@ server:
 swagger:
   # 部署时间 yyyy-MM-dd HH:mm:ss
   publishDate:
-  enable: true
   active: ${spring.profiles.active}
   basePackage: com.study.controller
   title: 生产者
