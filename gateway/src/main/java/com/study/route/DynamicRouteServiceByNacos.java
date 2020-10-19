@@ -17,7 +17,7 @@ import java.util.concurrent.Executor;
 
 @Component
 @Slf4j
-public class DynamicRouteServiceImplByNacos {
+public class DynamicRouteServiceByNacos {
 
     @Value("${spring.cloud.nacos.config.server-addr}")
     private String serverAddr;
@@ -29,7 +29,7 @@ public class DynamicRouteServiceImplByNacos {
     private String group;
 
     @Autowired
-    private DynamicRouteServiceImpl dynamicRouteService;
+    private DynamicRouteService dynamicRouteService;
 
     @PostConstruct
     public void dynamicRouteByNacosListener() {

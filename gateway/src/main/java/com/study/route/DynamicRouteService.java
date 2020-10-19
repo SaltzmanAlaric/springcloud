@@ -9,13 +9,14 @@ import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class DynamicRouteServiceImpl implements ApplicationEventPublisherAware {
+public class DynamicRouteService implements ApplicationEventPublisherAware {
 
-    @Autowired
+    @Resource
     private RouteDefinitionWriter routeDefinitionWriter;
 
     private ApplicationEventPublisher publisher;

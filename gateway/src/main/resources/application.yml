@@ -2,8 +2,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
-
+        server-addr: ${spring.cloud.nacos.config.server-addr}
 server:
   port: 8000
 

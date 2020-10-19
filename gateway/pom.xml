@@ -16,19 +16,18 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
+
         <spring-cloud.version>Greenwich.SR6</spring-cloud.version>
         <swagger-version>2.9.2</swagger-version>
         <knife4j-version>2.0.5</knife4j-version>
     </properties>
 
     <dependencies>
-
-        <dependency>
-            <groupId>com.study</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0</version>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
@@ -41,7 +40,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-
+        <!-- 注册中心 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!-- 配置中心 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
         <!--    gateway的依赖中自带了webflux，而webflux与webmvc是水火不容的，webflux默认自带的netty容器的依赖，而不是tomcat，虽然我在网上搜索到可以排除掉netty，再加入tomcat，打包后jar包也能重启，但是只要有数据传输就会立刻报错，因此又换回了它默认的netty容器。    -->
         <!-- 如果没有后端代码编写的话,仅仅引入一个swagger的前端ui模块也是可以的 -->
         <dependency>
@@ -55,6 +63,11 @@
             <version>${swagger-version}</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -66,6 +79,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.1.0.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -74,8 +94,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
             </plugin>
         </plugins>
+        <finalName>${project.artifactId}-${maven.build.timestamp}</finalName>
     </build>
 
 </project>

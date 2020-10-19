@@ -9,6 +9,7 @@ import org.springframework.web.server.ServerWebExchange;
 
 @Component
 public class SwaggerHeaderFilter extends AbstractGatewayFilterFactory {
+
     private static final String HEADER_NAME = "X-Forwarded-Prefix";
 
     private static final String URI = "/v2/api-docs";
@@ -18,7 +19,7 @@ public class SwaggerHeaderFilter extends AbstractGatewayFilterFactory {
         return (exchange, chain) -> {
             ServerHttpRequest request = exchange.getRequest();
             String path = request.getURI().getPath();
-            if (!StringUtils.endsWithIgnoreCase(path,URI )) {
+            if (!StringUtils.endsWithIgnoreCase(path, URI)) {
                 return chain.filter(exchange);
             }
             String basePath = path.substring(0, path.lastIndexOf(URI));
