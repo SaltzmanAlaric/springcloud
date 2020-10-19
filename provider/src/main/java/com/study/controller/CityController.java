@@ -16,19 +16,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@ApiSort(284)
 @Api(tags = "信息接口")
 @RestController
-@RequestMapping("/city")
-@ApiSort(284)
+@RequestMapping("city")
 public class CityController {
 
     @Autowired
     private ICityService service;
 
-    @ApiOperation("根据id获取路口")
     @ApiOperationSupport(order = 1, author = "admin")
+    @ApiOperation("根据id获取路口")
     @ApiImplicitParam(name = "id", value = "路口id", required = false, dataType = "String", example = "310000")
-    @GetMapping("/getTree")
+    @GetMapping("tree")
     public Result getTree() {
         List<City> cityWithTree = service.getCityWithTree();
         return Result.ok().put("city", cityWithTree);

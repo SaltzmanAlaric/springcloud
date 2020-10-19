@@ -17,28 +17,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@ApiSort(1)
 @Api(tags = "mam-b")
 @RestController
-@RequestMapping("/b")
-@ApiSort(1)
+@RequestMapping("b")
 public class BController {
 
-    @ApiOperation("获取名称")
     @ApiOperationSupport(order = 1, author = "mam")
+    @ApiOperation("获取名称")
     @PostMapping("name")
     public Result getName() {
         return Result.ok().put("b", "name");
     }
 
-    @ApiOperation("获取key")
     @ApiOperationSupport(order = 2, author = "mam")
+    @ApiOperation("获取key")
     @GetMapping("key")
     public Result getKey() {
         return Result.ok().put("b", "key");
     }
 
-    @ApiOperation("获取id")
     @ApiOperationSupport(order = 3, author = "mam")
+    @ApiOperation("获取id")
     @GetMapping("id")
     public Result getId() {
         return Result.ok().put("b", "id");
