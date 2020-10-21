@@ -1,7 +1,7 @@
 //package com.study.config;
 //
 //import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
-//import io.swagger.annotations.ApiOperation;
+//import io.config.annotations.ApiOperation;
 //import lombok.Getter;
 //import lombok.Setter;
 //import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -30,7 +30,7 @@
 //@Setter
 //@Configuration
 //@EnableSwagger2
-//@ConfigurationProperties(prefix = "swagger")
+//@ConfigurationProperties(prefix = "config")
 //@EnableKnife4j
 //@Import(BeanValidatorPluginsConfiguration.class)
 //public class Swagger2Config {

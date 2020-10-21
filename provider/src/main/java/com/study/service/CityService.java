@@ -1,26 +1,29 @@
-package com.study.service.impl;
+package com.study.service;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.study.common.service.BaseService;
 import com.study.dao.CityMapper;
 import com.study.entity.City;
-import com.study.service.ICityService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class CityServiceImpl extends ServiceImpl<CityMapper, City> implements ICityService {
+public class CityService implements BaseService<CityMapper, City> {
 
-    @Autowired
-    private CityMapper dao;
+    @Resource
+    private CityMapper mapper;
 
     @Override
+    public CityMapper getMapper() {
+        return mapper;
+    }
+
     public List<City> getCityWithTree() {
 
-        List<City> cities = dao.selectList(null);
+        List<City> cities = mapper.selectList(null);
         return cities.stream()
                 //过滤得到所有顶级节点
                 .filter((city)-> city.getPid() == 0)
@@ -48,4 +51,27 @@ public class CityServiceImpl extends ServiceImpl<CityMapper, City> implements IC
                 .sorted(Comparator.comparingInt(City::getSort))
                 .collect(Collectors.toList());
     }
+
+    /**
+     * 根据查询条件查询交通区域列表
+     *
+     * @param query 查询条件
+     * @return 交通区域列表
+     */
+//    @SortAop(typeClass = City.class)
+//    public List<City> selectCities(@Nullable City query) {
+//        return mapper.selectCities(query);
+//    }
+
+    /**
+     * 根据查询条件查询权限 分页
+     *
+     * @param query 查询条件
+     * @return 权限 分页
+     */
+//    @SortAop(typeClass = City.class)
+//    public PageInfo<City> selectCitiesByPage(int pageNum, int pageSize, @Nullable CityQuery query) {
+//        return PageHelper.startPage(pageNum, pageSize).doSelectPageInfo(() -> selectCities(query));
+//    }
+
 }

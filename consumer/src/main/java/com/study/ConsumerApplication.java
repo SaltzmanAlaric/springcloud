@@ -17,6 +17,9 @@ public class ConsumerApplication {
         SpringApplication.run(ConsumerApplication.class, args);
     }
 
+    /**
+     * 默认按顺序轮询(负载均衡)
+     */
     @Bean
     @LoadBalanced
     public RestTemplate restTemplate() {
