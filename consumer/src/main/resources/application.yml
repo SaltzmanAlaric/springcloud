@@ -1,28 +1,7 @@
-spring:
-  cloud:
-    nacos:
-      discovery:
-        server-addr: ${spring.cloud.nacos.config.server-addr}
-
-server:
-  port: 8082
-
 swagger:
-  # 部署时间 yyyy-MM-dd HH:mm:ss
-  publishDate:
   active: ${spring.profiles.active}
   basePackage: com.study.controller
   title: 消费者
   description: 消费者微服务
   termsOfServiceUrl: http://www.consumer.com
   version: 1.0
-
-
-knife4j:
-  # 是否屏蔽Swagger
-  production: false
-  # 开启Swagger的Basic认证功能,默认是false
-  basic:
-    enable: true
-    username: zhangsan
-    password: 123

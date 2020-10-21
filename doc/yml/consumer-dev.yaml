@@ -1,0 +1,6 @@
+server:
+  port: 8082
+
+swagger:
+  # 部署时间 yyyy-MM-dd HH:mm:ss
+  publishDate: '2020-10-21 12:00:00'

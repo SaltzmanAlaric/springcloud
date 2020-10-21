@@ -5,7 +5,8 @@ spring:
         server-addr: 127.0.0.1:8848
         file-extension: yaml
         enabled: false
-        dataId: gateway
+        # 默认namespace:pulic暂时无法更改
+        dataId: gateway-router
         group: DEFAULT_GROUP
   application:
     name: gateway

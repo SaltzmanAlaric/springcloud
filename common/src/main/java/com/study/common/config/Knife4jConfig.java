@@ -32,7 +32,7 @@ import java.util.Date;
 @ConfigurationProperties(prefix = "swagger")
 @EnableKnife4j
 @Import(BeanValidatorPluginsConfiguration.class)
-public class DefaultSwagger2Config {
+public class Knife4jConfig {
 
     private String title;
     private String description;

@@ -1,0 +1,21 @@
+spring:
+  jackson:
+    default-property-inclusion: non_null
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      # 不返回时间戳，如果为 true 返回时间戳，如果这三行同时存在，以第3行为准即返回时间戳
+      write-dates-as-timestamps: false
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+
+knife4j:
+  # 是否屏蔽Swagger
+  production: false
+  # 开启Swagger的Basic认证功能,默认是false
+  basic:
+    enable: true
+    username: zhangsan
+    password: 123

@@ -4,9 +4,16 @@ spring:
       config:
         server-addr: 127.0.0.1:8848
         file-extension: yaml
-        enabled: false
+        # false为关闭自动刷新,默认是true
+        enabled: true
+        shared-dataids: web.yml
+        refreshable-dataids: web.yml
+    discovery:
+      server-addr: ${spring.cloud.nacos.config.server-addr}
   application:
     name: consumer
+  profiles:
+    active: dev
 
 #开启熔断机制
 feign:
