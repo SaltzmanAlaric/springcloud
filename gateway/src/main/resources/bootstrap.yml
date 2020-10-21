@@ -5,8 +5,12 @@ spring:
         server-addr: 127.0.0.1:8848
         file-extension: yaml
         enabled: false
-        # 默认namespace:pulic暂时无法更改
+        # 默认namespace:public暂时无法更改,线上public里面写gateway-router，不用带后缀，选择json格式
         dataId: gateway-router
         group: DEFAULT_GROUP
+      discovery:
+        server-addr: ${spring.cloud.nacos.config.server-addr}
+        # 这个namespace配置项目中用的实际
+        namespace: 4deb67d0-3436-4f8e-9bf6-fd355b54a23f
   application:
     name: gateway

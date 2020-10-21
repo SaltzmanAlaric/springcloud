@@ -8,8 +8,12 @@ spring:
         enabled: true
         shared-dataids: web.yml
         refreshable-dataids: web.yml
-    discovery:
-      server-addr: ${spring.cloud.nacos.config.server-addr}
+        namespace: 4deb67d0-3436-4f8e-9bf6-fd355b54a23f
+        group: DEFAULT_GROUP
+      discovery:
+        server-addr: ${spring.cloud.nacos.config.server-addr}
+        namespace: ${spring.cloud.nacos.config.namespace}
+
   application:
     name: consumer
   profiles:
