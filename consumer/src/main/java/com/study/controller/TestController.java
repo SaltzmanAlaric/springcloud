@@ -40,7 +40,7 @@ public class TestController {
     @GetMapping("system-info")
     public Result<String> getSystemInfo(){
         String system = System.getProperty("os.name");
-        return Result.success(system);
+        return Result.success("获取操作系统名称成功", system);
     }
 
 }
