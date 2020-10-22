@@ -15,6 +15,11 @@ spring:
       discovery:
         server-addr: ${spring.cloud.nacos.config.server-addr}
         namespace: ${spring.cloud.nacos.config.namespace}
+        metadata:
+          service-name: 消费者服务
+          path: ${spring.application.name}/**
+          active: ${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+          shared-dataids: ${spring.cloud.nacos.config.shared-dataids}
 
   application:
     name: consumer

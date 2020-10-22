@@ -2,7 +2,6 @@ package com.study.bean;
 
 import com.study.bean.po.StudentPO;
 import com.study.bean.vo.StudentVO;
-import com.study.fegin.provider.entity.vo.Converter;
 
 public class Test {
 
