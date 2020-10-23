@@ -1,0 +1,27 @@
+﻿<service>
+
+     <id>xx</id>
+
+     <name>名称</name>
+
+     <description>cloud系统微服务</description>
+
+     <!-- java环境变量 -->
+
+     <env name="JAVA_HOME" value="%JAVA_HOME%"/>
+
+     <executable>java</executable>
+
+    <arguments>-jar "xx.jar"</arguments>
+
+     <!-- 开机启动 -->
+
+     <startmode>Automatic</startmode>
+
+     <!-- 日志配置 -->
+
+     <logpath>%BASE%\log</logpath>
+
+     <logmode>rotate</logmode>
+
+ </service>
