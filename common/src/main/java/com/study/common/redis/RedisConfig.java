@@ -14,6 +14,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -30,10 +31,28 @@ import java.io.Serializable;
 import java.net.UnknownHostException;
 import java.time.Duration;
 
-
 @Configuration
+@EnableCaching
 @AutoConfigureAfter(RedisAutoConfiguration.class)
-public class RedisConfig {
+public class RedisConfig extends CachingConfigurerSupport {
+
+    /**
+     * 自定义生成redis-key
+     */
+    @Override
+    @Bean
+    public KeyGenerator keyGenerator() {
+        return (o, method, objects) -> {
+            StringBuilder sb = new StringBuilder();
+            sb.append(o.getClass().getName()).append(".");
+            sb.append(method.getName()).append(".");
+            for (Object obj : objects) {
+                sb.append(obj.toString());
+            }
+            System.out.println("keyGenerator=" + sb.toString());
+            return sb.toString();
+        };
+    }
 
     /**
      * jackJSON转换对象

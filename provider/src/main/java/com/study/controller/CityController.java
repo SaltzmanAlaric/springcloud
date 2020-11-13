@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.List;
 
-@ApiSort(284)
-@Api(tags = "信息接口")
+@Api(tags = "A03 信息接口")
 @RestController
 @RequestMapping("city")
 public class CityController {

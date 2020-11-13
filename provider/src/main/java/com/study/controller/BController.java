@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@ApiSort(1)
-@Api(tags = "mam-b")
+@Api(tags = "A02 mam-b")
 @RestController
 @RequestMapping("b")
 public class BController {

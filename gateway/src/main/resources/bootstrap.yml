@@ -15,5 +15,6 @@ spring:
         metadata:
           service-name: 网关服务
           router: ${spring.cloud.nacos.config.dataId}.json
+          routes: /actuator/gateway/routes
   application:
     name: gateway

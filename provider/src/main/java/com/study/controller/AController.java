@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@ApiSort(2)
-@Api(tags = "step-a")
+@Api(tags = "a01 step-a")
 @RestController
 @RequestMapping("a")
 public class AController {
