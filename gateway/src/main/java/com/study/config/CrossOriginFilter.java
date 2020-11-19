@@ -51,6 +51,7 @@ public class CrossOriginFilter implements GlobalFilter, Ordered {
                 HttpMethod requestMethod = requestHeaders.getAccessControlRequestMethod();
                 HttpHeaders headers = response.getHeaders();
                 headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, requestHeaders.getOrigin());
+                headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, "*");
                 headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, "Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With,userId,token");
                 headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
                 headers.add(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "Authorization,Captcha-Token");
